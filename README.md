@@ -54,3 +54,24 @@ p("Hello!", "Hi!", "What's up")
 #    1: Hi!
 #    2: What's up
 ```
+
+## Executor: `executeWith(executor)`
+```py
+import funpy
+
+# This function is an executor(f).
+# It will deside to call f() or will send it to somewhere else. For ex: new Thread
+def executor(f):
+    print("Before!")
+    print("Result: ", f())
+    print("After!")
+    return 1000
+
+# Will execute this function via executor(f) func
+@funpy.executeWith(executor)
+def add(a, b):
+    return a + b
+
+add(10, 20)
+# Will print Before, Result, After and return 1000
+```

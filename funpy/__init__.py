@@ -63,3 +63,15 @@ def forEachArg(func):
 			arr.append(func(a[i], i))
 		return arr
 	return wrapper
+
+# ---------------------------
+# Executor
+# ---------------------------
+def executeWith(executor):
+	def deco(func):
+		def wrapper(*a, **k):
+			def call():
+				return func(*a, **k)
+			return executor(call)
+		return wrapper
+	return deco
