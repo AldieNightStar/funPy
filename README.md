@@ -75,3 +75,41 @@ def add(a, b):
 add(10, 20)
 # Will print Before, Result, After and return 1000
 ```
+
+## Maybe: `Maybe(value)`
+```py
+import funpy
+
+# Will get value or will raise the ValueError
+d = funpy.Maybe(32).get_val()
+
+# Will get value or will execute another getter
+d = funpy.Maybe(32).orGet(lambda: 32).get_val()
+
+# Will get value or another one if first one is None
+d = funpy.Maybe(32).orElse(16)
+
+# Process the value when it's present and get
+d = funpy.Maybe(32).process(lambda val: print(val)).get_val()
+
+# Map the value when it's present and get the value
+d = funpy.Maybe(32).map(lambda n: n * 2).get_val()
+```
+
+## Random element: `get_random(elemms)`
+```py
+import funpy
+
+# Will return random element from the list
+elem = get_random([1, 2, 3])
+```
+
+## OneOf functions: `one_of(args, *funcs)`
+```py
+import funpy
+
+# Call each function in a list with args and get the first non-None result
+# arg1 - arguments
+# argN - functions
+elem = one_of([10, 20, 30], func1, func2, func3)
+```
